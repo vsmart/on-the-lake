@@ -3,17 +3,40 @@
   <head>
     <meta charset="utf-8">
     <title>On The Lake</title>
-    <script src="aframe.min.js"></script>
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script>
+
+      AFRAME.registerComponent('log', {
+        schema: {type: 'string'},
+        init: function () {
+          const box = this.el.sceneEl.querySelector('#box');
+          const cursor = this.el.sceneEl.querySelector('#cursor');
+          box.addEventListener('boo', function (event) {
+            console.log('boooooo');
+            cursorPos = cursor.getAttribute('position');
+            box.setAttribute('position', cursorPos);
+          });
+        }
+      });
+
+      AFRAME.registerComponent('boo', {
+        schema: {type: 'string'},
+        init: function () {
+          box.emit('boo', {}, true);
+        }
+      });
+
+    </script>
   </head>
   <body>
     <a-scene stats>
       <a-entity camera look-controls position="0 1.5 0">
-        <a-cursor></a-cursor>
+        <a-cursor id="cursor"></a-cursor>
       </a-entity>
-      <a-sky color="#cce5dc"></a-sky>
+      <a-sky color="#cce5dc" log=""></a-sky>
       <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="100" color="#264b51"></a-plane>
       <a-entity position="0 0 -3" rotation="0 0 0">
-        <a-box position="-1 0.5 -3" rotation="0 0 0" color="black"></a-box>
+        <a-box id="box" position="-1 0.5 -3" rotation="0 0 0" color="black"></a-box>
       </a-entity>
     </a-scene>
   </body>
