@@ -7,11 +7,13 @@
     <script>
       AFRAME.registerComponent('hide-ball', {
         init: function () {
-          const ball = document.querySelector('#ball');
-          const splash = document.querySelector('#splash');
+          let ball = document.querySelector('#ball');
+          let splash = document.querySelector('#splash');
           ball.addEventListener('click', function () {
+            let newPosition = [5, 0.5, -6];
             ball.setAttribute('visible', false);
             splash.setAttribute('visible', true);
+            splash.object3D.position.set(newPosition);
           });
         }
       });
