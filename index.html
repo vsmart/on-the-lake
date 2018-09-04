@@ -5,14 +5,11 @@
     <title>On The Lake</title>
     <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
     <script>
-      AFRAME.registerComponent('hide-mattress', {
+      AFRAME.registerComponent('hide-ball', {
         init: function () {
-          const boxEl = document.querySelector('a-box')
-          boxEl.addEventListener('mouseenter', function () {
-            boxEl.setAttribute('color', 'blue');
-          });
-          boxEl.addEventListener('mouseleave', function () {
-            boxEl.setAttribute('color', 'pink');
+          const ball = document.querySelector('#ball')
+          ball.addEventListener('click', function () {
+            ball.setAttribute('visible', false);
           });
         }
       });
@@ -29,8 +26,8 @@
       <a-plane position="0 0 0" rotation="-90 0 0" width="100" height="100" color="#264b51"></a-plane>
 
       <a-entity position="0 0 -3" rotation="0 0 0">
-        <a-sphere id="ball" position="0 0.5 -2" rotation="0 0 0" color="purple" radius="0.5"></a-sphere>
-        <a-box id="box" rotation="0 0 0" color="pink" width="3" height="0.3" depth="6" hide-mattress></a-box>
+        <a-sphere id="ball" position="0 0.5 -1.5" rotation="0 0 0" color="purple" radius="0.5" hide-ball visible="true"></a-sphere>
+        <a-box id="box" rotation="0 0 0" color="pink" width="3" height="0.3" depth="6"></a-box>
       </a-entity>
     </a-scene>
   </body>
